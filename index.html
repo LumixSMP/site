@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumixSMP - Майнкрафт сервер</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.8), rgba(37, 117, 252, 0.8));
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.7), rgba(37, 117, 252, 0.7));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: linear-gradient(135deg, rgba(137, 69, 220, 0.9), rgba(67, 137, 252, 0.9));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .card {
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.7), rgba(37, 117, 252, 0.7));
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .card ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .card li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .card li i {
+            color: #a78bfa;
+            margin-top: 5px;
+        }
+        
+        .discord-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #5865F2, #7289da);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .server-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .info-item h3 {
+            margin-bottom: 10px;
+            color: #a78bfa;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .server-ip {
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.7), rgba(37, 117, 252, 0.7));
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        
+        .mod-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .mod-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .mod-item h3 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mod-link {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        
+        .mod-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .required-mods {
+            margin-top: 30px;
+        }
+        
+        .brewery-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .brewery-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .brewery-image {
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.5), rgba(37, 117, 252, 0.5));
+            border-radius: 10px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+        
+        .download-section {
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.7), rgba(37, 117, 252, 0.7));
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 1.2rem;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-left: 15px;
+        }
+        
+        .modpack-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .instruction-steps {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .instruction-steps li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-cubes"></i>
+            </div>
+            <h1>LumixSMP</h1>
+            <p>Добро пожаловать на вики официального сайта майнкрафт сервера LumixSMP! Здесь вы найдете всю необходимую информацию о нашем сервере.</p>
+        </header>
+        
+        <div class="nav">
+            <button class="nav-btn active" data-target="main">Главная</button>
+            <button class="nav-btn" data-target="join">Как присоединиться</button>
+            <button class="nav-btn" data-target="mods">Моды</button>
+            <button class="nav-btn" data-target="brewery">Brewery</button>
+        </div>
+        
+        <div id="main" class="content-section active">
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> О сервере</h2>
+                <p>LumixSMP — это ванильный выживательный сервер с небольшими дополнениями для улучшения игрового опыта. Мы стремимся создать дружелюбное и welcoming сообщество игроков.</p>
+                
+                <div class="server-info">
+                    <div class="info-item">
+                        <h3><i class="fas fa-calendar-alt"></i> Дата запуска</h3>
+                        <p>15 января 2025</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-users"></i> Онлайн</h3>
+                        <p>15-30 игроков</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-map"></i> Версия</h3>
+                        <p>1.21.7</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-shield-alt"></i> Моды</h3>
+                        <p>OptiFine, Voice</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 20px;">Особенности сервера:</h3>
+                <div class="features">
+                    <span class="feature">Ванильный геймплей</span>
+                    <span class="feature">Экономика</span>
+                    <span class="feature">Квесты</span>
+                    <span class="feature">Сезонные события</span>
+                    <span class="feature">Приватные территории</span>
+                    <span class="feature">Голосовой чат</span>
+                    <span class="feature">Плагин Brewery</span>
+                </div>
+            </div>
+            
+            <div class="server-ip">
+                <span>IP-адрес сервера: lumixsmp.mcserver.ru</span>
+                <button class="copy-btn" onclick="copyIP()">Скопировать</button>
+            </div>
+        </div>
+        
+        <div id="join" class="content-section">
+            <div class="card">
+                <h2><i class="fas fa-door-open"></i> Как присоединиться</h2>
+                <p>Чтобы присоединиться к нашему дружному сообществу, выполните следующие шаги:</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <span>Присоединитесь к нашему Discord-серверу по кнопке ниже</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Ознакомьтесь с правилами в соответствующем канале</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Подайте заявку в канале #заявки-на-сервер</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>Ожидайте ответа от модератора (обычно не более 24 часов)</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span>После одобрения заявки вы получите IP-адрес сервера</span></li>
+                </ul>
+                <a href="#" class="discord-btn"><i class="fab fa-discord"></i> Присоединиться к Discord</a>
+            </div>
+            
+            <div class="download-section">
+                <h2><i class="fas fa-download"></i> Официальная сборка модов</h2>
+                <p>Для удобства мы подготовили официальную сборку модов, которая включает все необходимое для комфортной игры на нашем сервере.</p>
+                
+                <div class="modpack-info">
+                    <div class="info-item">
+                        <h3><i class="fas fa-cog"></i> Версия</h3>
+                        <p>LumixSMP Modpack v2.1.4</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-list"></i> Количество модов</h3>
+                        <p>24 мода</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-desktop"></i> Совместимость</h3>
+                        <p>Windows, Mac, Linux</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="download-btn"><i class="fas fa-download"></i> Скачать сборку</a>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Размер: 128 МБ | SHA-256: a1b2c3d4e5f6...</p>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-download"></i> Установка сборки</h2>
+                <p>Чтобы установить нашу сборку модов, выполните следующие шаги:</p>
+                
+                <ol class="instruction-steps">
+                    <li>Скачайте и установите <a href="#" style="color: #a78bfa;">CurseForge App</a> или <a href="#" style="color: #a78bfa;">Modrinth App</a></li>
+                    <li>Скачайте нашу сборку модов по ссылке выше</li>
+                    <li>Откройте приложение и выберите "Импорт сборки"</li>
+                    <li>Укажите путь к скачанному файлу сборки</li>
+                    <li>Дождитесь установки всех модов и запустите игру</li>
+                </ol>
+                
+                <p><strong>Важно:</strong> Убедитесь, что в лаунчере выбрана версия Minecraft 1.21.7</p>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-cogs"></i> Ручная установка модов</h2>
+                <p>Если вы предпочитаете установить моды вручную, вам понадобятся следующие моды:</p>
+                
+                <div class="required-mods">
+                    <div class="mod-item">
+                        <h3><i class="fas fa-microphone"></i> Simple Voice Chat</h3>
+                        <p>Мод для голосового общения в игре. Позволяет общаться с другими игроками на близком расстоянии.</p>
+                        <a href="https://modrinth.com/plugin/simple-voice-chat" class="mod-link" target="_blank">Скачать на Modrinth</a>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-smile"></i> Emotecraft</h3>
+                        <p>Мод для отображения эмоций и анимаций вашего персонажа.</p>
+                        <a href="https://modrinth.com/mod/emotecraft" class="mod-link" target="_blank">Скачать на Modrinth</a>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-bolt"></i> OptiFine</h3>
+                        <p>Мод для оптимизации и улучшения графики игры.</p>
+                        <a href="https://optifine.net" class="mod-link" target="_blank">Скачать OptiFine</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mods" class="content-section">
+            <div class="card">
+                <h2><i class="fas fa-check-circle"></i> Разрешенные моды</h2>
+                <p>На сервере разрешены следующие моды:</p>
+                
+                <div class="mod-list">
+                    <div class="mod-item">
+                        <h3><i class="fas fa-chart-bar"></i> Оптимизация</h3>
+                        <p>OptiFine, Sodium, Lithium, Phosphor</p>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-map"></i> Миникарты</h3>
+                        <p>Xaero's Minimap, JourneyMap</p>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-box-open"></i> Инвентарь</h3>
+                        <p>Inventory Tweaks, AppleSkin</p>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-pencil-alt"></i> Визуальные</h3>
+                        <p>Resource packs, shaders</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-ban"></i> Запрещенные моды</h2>
+                <p>На сервере запрещены следующие моды:</p>
+                
+                <div class="mod-list">
+                    <div class="mod-item">
+                        <h3><i class="fas fa-bomb"></i> Читы</h3>
+                        <p>X-Ray, Fly mods, Speed hacks</p>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-robot"></i> Автоматизация</h3>
+                        <p>Auto-clickers, Macro mods</p>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-eye"></i> Преимущества</h3>
+                        <p>Radar mods, Entity radar</p>
+                    </div>
+                    
+                    <div class="mod-item">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Прочие</h3>
+                        <p>Любые моды, дающие нечестное преимущество</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="brewery" class="content-section">
+            <div class="card">
+                <h2><i class="fas fa-wine-bottle"></i> Плагин Brewery</h2>
+                <p>Brewery — это реалистичный плагин для варки алкоголя в Minecraft, добавляющий глубокую систему создания напитков с использованием процессов брожения, дистилляции и старения.</p>
+                
+                <div class="brewery-content">
+                    <div>
+                        <h3>Особенности Brewery:</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Реалистичная система варки алкоголя</li>
+                            <li><i class="fas fa-check"></i> Процессы брожения и дистилляции</li>
+                            <li><i class="fas fa-check"></i> Система старения напитков в бочках</li>
+                            <li><i class="fas fa-check"></i> Эффекты после употребления напитков</li>
+                            <li><i class="fas fa-check"></i> Кастомные рецепты и ингредиенты</li>
+                            <li><i class="fas fa-check"></i> Возможность создания собственной пивоварни</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="brewery-image">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                </div>
+                
+                <h3>Как использовать Brewery:</h3>
+                <p>Для начала варки алкоголя вам понадобится:</p>
+                <ol>
+                    <li>Создать или найти котёл для варки сусла</li>
+                    <li>Найти или создать бочку для брожения</li>
+                    <li>Приготовить дистиллятор для крепких напитков</li>
+                    <li>Найти необходимые ингредиенты для рецептов</li>
+                    <li>Выдержать напиток необходимое время</li>
+                </ol>
+                
+                <p>На сервере действуют правила ответственного употребления алкогольных напитков. Злоупотребление может привести к негативным эффектам для вашего персонажа!</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>LumixSMP © 2025. Все права защищены.</p>
+            <p>Связь с администрацией: admin@lumixsmp.ru</p>
+        </footer>
+    </div>
+    
+    <script>
+        function copyIP() {
+            navigator.clipboard.writeText("lumixsmp.mcserver.ru")
+                .then(() => {
+                    alert("IP-адрес скопирован в буфер обмена!");
+                })
+                .catch(err => {
+                    console.error('Ошибка при копировании: ', err);
+                });
+        }
+        
+        // Навигация между разделами
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-target');
+                
+                // Убираем активный класс у всех кнопок и разделов
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+                
+                // Добавляем активный класс к текущей кнопке и разделу
+                button.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
