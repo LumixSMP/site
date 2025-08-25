@@ -1,4 +1,3 @@
-/* Общие стили */
 * {
     margin: 0;
     padding: 0;
@@ -8,49 +7,46 @@
 
 body {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    color: #f0f0f0;
+    color: #fff;
     min-height: 100vh;
-    line-height: 1.6;
+    padding: 20px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    background: rgba(13, 23, 42, 0.8);
+    border-radius: 15px;
     padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Шапка */
 header {
     text-align: center;
     margin-bottom: 30px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo {
     font-size: 3rem;
-    margin-bottom: 15px;
-    color: #8a2be2;
+    margin-bottom: 10px;
+    color: #8af7e5;
 }
 
 h1 {
     font-size: 2.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: #8af7e5;
-    text-shadow: 0 0 10px rgba(138, 247, 229, 0.5);
 }
 
 header p {
-    font-size: 1.1rem;
+    color: #c5c8c9;
     max-width: 800px;
     margin: 0 auto;
-    color: #cccccc;
+    line-height: 1.6;
 }
 
-/* Навигация */
 .nav {
     display: flex;
     justify-content: center;
@@ -63,27 +59,23 @@ header p {
     padding: 12px 20px;
     background: rgba(138, 247, 229, 0.1);
     color: #8af7e5;
-    border: 1px solid rgba(138, 247, 229, 0.3);
-    border-radius: 8px;
     text-decoration: none;
+    border-radius: 8px;
     transition: all 0.3s ease;
-    cursor: pointer;
-    font-weight: 500;
+    border: 1px solid rgba(138, 247, 229, 0.3);
+    font-weight: 600;
 }
 
 .nav-btn:hover {
     background: rgba(138, 247, 229, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(138, 247, 229, 0.2);
 }
 
 .nav-btn.active {
     background: rgba(138, 247, 229, 0.3);
-    border-color: #8af7e5;
-    box-shadow: 0 0 15px rgba(138, 247, 229, 0.4);
+    box-shadow: 0 0 15px rgba(138, 247, 229, 0.3);
 }
 
-/* Карточки */
 .content-section {
     display: none;
 }
@@ -93,18 +85,17 @@ header p {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
+    background: rgba(19, 33, 69, 0.5);
+    border-radius: 12px;
     padding: 25px;
     margin-bottom: 25px;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .card h2 {
     color: #8af7e5;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 1.8rem;
     display: flex;
     align-items: center;
@@ -112,199 +103,50 @@ header p {
 }
 
 .card h3 {
-    color: #c8a2f7;
+    color: #8af7e5;
     margin: 15px 0 10px;
     font-size: 1.3rem;
 }
 
 .card p {
+    line-height: 1.6;
     margin-bottom: 15px;
-    color: #dddddd;
+    color: #c5c8c9;
 }
 
-/* Списки */
-ul, ol {
+.card ul, .card ol {
     padding-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    color: #c5c8c9;
 }
 
-li {
+.card li {
     margin-bottom: 8px;
-    color: #dddddd;
+    line-height: 1.5;
 }
 
-/* Информационные блоки */
-.server-info, .modpack-info {
+.server-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 .info-item {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(13, 23, 42, 0.5);
     padding: 15px;
-    border-radius: 10px;
-    border-left: 3px solid #8af7e5;
+    border-radius: 8px;
+    text-align: center;
 }
 
 .info-item h3 {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     font-size: 1.1rem;
-    margin-bottom: 8px;
 }
 
-/* Кнопки */
-.discord-btn, .download-btn, .buy-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background: linear-gradient(45deg, #8a2be2, #6a5acd);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    margin: 10px 0;
-    border: none;
-    cursor: pointer;
-}
-
-.discord-btn:hover, .download-btn:hover, .buy-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
-}
-
-.download-btn {
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
-}
-
-.buy-btn {
-    background: linear-gradient(45deg, #f953c6, #b91d73);
-    text-align: center;
-    display: block;
-    margin-top: 15px;
-}
-
-.copy-btn {
-    padding: 8px 15px;
-    background: rgba(138, 247, 229, 0.2);
-    color: #8af7e5;
-    border: 1px solid rgba(138, 247, 229, 0.3);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.copy-btn:hover {
-    background: rgba(138, 247, 229, 0.3);
-}
-
-/* Пакеты доната */
-.donate-packages {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-}
-
-.package {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(138, 247, 229, 0.2);
-    transition: all 0.3s ease;
-}
-
-.package:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    border-color: #8af7e5;
-}
-
-.price {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #8af7e5;
-    margin: 15px 0;
-    text-align: center;
-}
-
-.package ul {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-}
-
-.package li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.package li i {
-    color: #8af7e5;
-}
-
-/* FAQ */
-.faq-item {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.faq-item:last-child {
-    border-bottom: none;
-}
-
-/* Моды и плагины */
-.mod-list, .plugin-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.mod-item, .plugin-item {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 15px;
-    border-radius: 10px;
-    border-left: 3px solid #8a2be2;
-}
-
-.mod-link {
-    color: #8af7e5;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: 500;
-}
-
-.mod-link:hover {
-    text-decoration: underline;
-}
-
-/* Секция загрузки */
-.download-section {
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(138, 247, 229, 0.1) 100%);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 25px;
-    text-align: center;
-    border: 1px solid rgba(138, 247, 229, 0.2);
-}
-
-/* Шаги инструкции */
-.instruction-steps {
-    padding-left: 25px;
-}
-
-.instruction-steps li {
-    margin-bottom: 15px;
-}
-
-/* Особенности */
 .features {
     display: flex;
     flex-wrap: wrap;
@@ -317,25 +159,35 @@ li {
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 0.9rem;
-    border: 1px solid rgba(138, 247, 229, 0.2);
 }
 
-/* IP сервера */
 .server-ip {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    background: rgba(138, 247, 229, 0.1);
+    background: rgba(19, 33, 69, 0.5);
     padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0;
+    border-radius: 12px;
+    margin-bottom: 25px;
     font-size: 1.2rem;
-    font-weight: 500;
-    border: 1px solid rgba(138, 247, 229, 0.2);
+    font-weight: bold;
 }
 
-/* Новости */
+.copy-btn {
+    padding: 8px 15px;
+    background: rgba(138, 247, 229, 0.2);
+    color: #8af7e5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(138, 247, 229, 0.3);
+}
+
 .news-item {
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -348,35 +200,167 @@ li {
     margin-bottom: 10px;
 }
 
-/* Карта */
+.discord-btn, .download-btn, .buy-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: rgba(138, 247, 229, 0.2);
+    color: #8af7e5;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(138, 247, 229, 0.3);
+    font-weight: 600;
+}
+
+.discord-btn:hover, .download-btn:hover, .buy-btn:hover {
+    background: rgba(138, 247, 229, 0.3);
+    transform: translateY(-2px);
+}
+
+.download-section {
+    background: rgba(19, 33, 69, 0.5);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.modpack-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.instruction-steps {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.instruction-steps li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.required-mods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.mod-item {
+    background: rgba(13, 23, 42, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.mod-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #8af7e5;
+    text-decoration: none;
+}
+
+.mod-link:hover {
+    text-decoration: underline;
+}
+
+.mod-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.donate-packages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.package {
+    background: rgba(13, 23, 42, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(138, 247, 229, 0.2);
+    transition: all 0.3s ease;
+}
+
+.package:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #8af7e5;
+    margin: 15px 0;
+}
+
+.package ul {
+    text-align: left;
+    margin-bottom: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.package li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plugin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.plugin-item {
+    background: rgba(13, 23, 42, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+}
+
 .dynmap-container {
     margin: 20px 0;
 }
 
 .dynmap-frame {
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    height: 500px;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dynmap-placeholder {
-    text-align: center;
-    padding: 30px;
-    color: #cccccc;
+    color: #c5c8c9;
 }
 
-/* Подвал */
 footer {
     text-align: center;
-    margin-top: 50px;
-    padding: 20px;
-    color: #888;
+    margin-top: 40px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #c5c8c9;
+    font-size: 0.9rem;
 }
 
 /* Адаптивность */
@@ -385,7 +369,7 @@ footer {
         flex-direction: column;
     }
     
-    .server-info, .modpack-info, .donate-packages, .mod-list, .plugin-grid {
+    .server-info, .modpack-info, .donate-packages, .plugin-grid {
         grid-template-columns: 1fr;
     }
     
@@ -393,22 +377,4 @@ footer {
         flex-direction: column;
         text-align: center;
     }
-    
-    .dynmap-frame {
-        height: 300px;
-    }
-}
-
-/* Анимации */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.content-section.active {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-.card {
-    animation: fadeIn 0.5s ease forwards;
 }
