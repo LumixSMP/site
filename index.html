@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumixSMP - Майнкрафт сервер</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-cubes"></i>
+            </div>
+            <h1>LumixSMP</h1>
+            <p>Добро пожаловать на вики официального сайта майнкрафт сервера LumixSMP! Здесь вы найдете всю необходимую информацию о нашем сервере.</p>
+        </header>
+        
+        <div class="nav">
+            <button class="nav-btn active" data-target="main">Главная</button>
+            <button class="nav-btn" data-target="join">Как присоединиться</button>
+            <button class="nav-btn" data-target="mods">Моды</button>
+            <button class="nav-btn" data-target="plugins">Плагины</button>
+            <button class="nav-btn" data-target="dynmap">Карта сервера</button>
+            <button class="nav-btn" data-target="donate">Донат</button>
+        </div>
+        
+        <div id="main" class="content-section active">
+            <!-- Содержимое главной страницы -->
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> О сервере</h2>
+                <p>LumixSMP — это ванильный выживательный сервер с небольшими дополнениями для улучшения игрового опыта. Мы стремимся создать дружелюбное и welcoming сообщество игроков.</p>
+                
+                <div class="server-info">
+                    <div class="info-item">
+                        <h3><i class="fas fa-calendar-alt"></i> Дата запуска</h3>
+                        <p>15 января 2025</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-users"></i> Онлайн</h3>
+                        <p>15-30 игроков</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-map"></i> Версия</h3>
+                        <p>1.21.7</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-shield-alt"></i> Моды</h3>
+                        <p>OptiFine, Voice</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 20px;">Особенности сервера:</h3>
+                <div class="features">
+                    <span class="feature">Ванильный геймплей</span>
+                    <span class="feature">Экономика</span>
+                    <span class="feature">Квесты</span>
+                    <span class="feature">Сезонные события</span>
+                    <span class="feature">Голосовой чат</span>
+                    <span class="feature">Уникальные плагины</span>
+                    <span class="feature">Активное сообщество</span>
+                </div>
+            </div>
+            
+            <div class="server-ip">
+                <span>IP-адрес сервера: lumixsmp.mcserver.ru</span>
+                <button class="copy-btn" onclick="copyIP()">Скопировать</button>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-newspaper"></i> Последние новости</h2>
+                <div class="news-item">
+                    <h3>Обновление 1.5 - Новые квесты и исправления</h3>
+                    <p class="news-date">20 марта 2025</p>
+                    <p>Добавлено 5 новых квестов в северном регионе, исправлены проблемы с производительностью и добавлены новые предметы в магазин.</p>
+                </div>
+                <div class="news-item">
+                    <h3>Сезонное событие: Весенний фестиваль</h3>
+                    <p class="news-date">15 марта 2025</p>
+                    <p>Присоединяйтесь к нашему весеннему фестивалю с 20 по 27 марта! Уникальные награды, мини-игры и специальные мобы.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>LumixSMP © 2025. Все права защищены.</p>
+            <p>Связь с администрацией: admin@lumixsmp.ru</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
