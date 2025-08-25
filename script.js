@@ -1,57 +1,50 @@
-// Навигация между страницами
+// Функция для копирования IP-адреса
+function copyIP() {
+    const ip = 'lumixsmp.mcserver.ru';
+    navigator.clipboard.writeText(ip).then(() => {
+        alert('IP-адрес скопирован: ' + ip);
+    }).catch(err => {
+        console.error('Ошибка при копировании: ', err);
+    });
+}
+
+// Функция для активации вкладки
+function activateTab(tabId) {
+    // Скрыть все секции контента
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Показать выбранную секцию
+    const targetSection = document.getElementById(tabId);
+    if (targetSection) {
+        targetSection.classList.add('active');
+    }
+    
+    // Обновить активную кнопку навигации
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-target') === tabId) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Обработка навигационных кнопок
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const contentSections = document.querySelectorAll('.content-section');
-    
-    navButtons.forEach(button => {
-        button.addEventListener('click', function() {
+    // Обработчики для кнопок навигации
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
             const target = this.getAttribute('data-target');
-            
-            // Убираем активный класс у всех кнопок и секций
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            contentSections.forEach(section => section.classList.remove('active'));
-            
-            // Добавляем активный класс текущей кнопке и целевой секции
-            this.classList.add('active');
-            
             if (target) {
-                document.getElementById(target).classList.add('active');
+                activateTab(target);
             }
         });
     });
     
-    // Функция копирования IP-адреса
-    window.copyIP = function() {
-        const ip = 'lumixsmp.mcserver.ru';
-        navigator.clipboard.writeText(ip).then(() => {
-            const btn = document.querySelector('.copy-btn');
-            const originalText = btn.textContent;
-            btn.textContent = 'Скопировано!';
-            
-            setTimeout(() => {
-                btn.textContent = originalText;
-            }, 2000);
-        }).catch(err => {
-            console.error('Ошибка при копировании: ', err);
-        });
-    };
-    
-    // Плавная прокрутка для якорей
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            
-            if (targetId !== '#') {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
+    // Активировать первую вкладку по умолчанию
+    if (document.querySelector('.nav-btn.active')) {
+        const activeTab = document.querySelector('.nav-btn.active').getAttribute('data-target');
+        activateTab(activeTab);
+    }
 });
